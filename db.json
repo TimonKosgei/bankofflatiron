@@ -83,6 +83,27 @@
       "description": "Venmo, Pay Roommate for Rent",
       "category": "Housing",
       "amount": -975
+    },
+    {
+      "date": "2024-11-08",
+      "description": "NHIF",
+      "category": "Deductions",
+      "amount": "-2000",
+      "id": 13
+    },
+    {
+      "date": "2024-11-15",
+      "description": "Paycheck",
+      "category": "Income",
+      "amount": "20000",
+      "id": 14
+    },
+    {
+      "date": "2024-11-15",
+      "description": "Paycheck",
+      "category": "Income",
+      "amount": "20000",
+      "id": 15
     }
   ]
 }

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Transaction from "./Transaction";
 
-function TransactionsList() {
+function TransactionsList({transactions}) {
+  
   return (
     <table className="ui celled striped padded table">
       <tbody>
@@ -20,6 +21,11 @@ function TransactionsList() {
           </th>
         </tr>
         {/* render a list of <Transaction> components here */}
+        {transactions.map((transaction,index) => {
+          return(
+        <Transaction key={index} date={transaction.date} description={transaction.description} category={transaction.category} amount={transaction.amount}/>
+          )  
+      })}
       </tbody>
     </table>
   );
