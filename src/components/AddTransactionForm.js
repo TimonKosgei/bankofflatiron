@@ -21,11 +21,12 @@ function AddTransactionForm({onNewTransaction}) {
             .then(res => {
               if(res.ok){  
                 onNewTransaction(formData)
+                console.log("Transaction added successfully")
               }
               res.json()
               
             })
-            .then(data => console.log(data))
+            .then(data => console.log())
             .catch(error => console.log(`Error: ${error}`))
         }}>
         <div className="inline fields">

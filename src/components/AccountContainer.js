@@ -16,8 +16,13 @@ function AccountContainer() {
     })
   },[])
   function updateTransaction (newTransaction){
-    setTransactions((prev) => [...prev, newTransaction])
-    setFilteredTransactions((prev) => [...prev,newTransaction])
+    fetch('http://localhost:8002/transactions')
+    .then(res => res.json())
+    .then(data => {
+      //everything that happens to the transactions state also happens to the filtered transactions
+      setTransactions(data)
+      setFilteredTransactions(data)
+    })
   }
   function handleSearching(searchVal)
   {
@@ -28,11 +33,36 @@ function AccountContainer() {
       setFilteredTransactions(t)
     }
   }
+
+  function deleteTransaction(transactionId){
+    fetch(`http://localhost:8002/transactions/${transactionId}`, { 
+      method: 'DELETE', 
+    })
+      .then((response) => {
+        if (response.ok) {
+          setTransactions((prevTransactions) =>
+            prevTransactions.filter((transaction) => transaction.id !== transactionId)
+          );
+          setFilteredTransactions((prevTransactions) =>
+            prevTransactions.filter((transaction) => transaction.id !== transactionId)
+          );
+          console.log('Item deleted successfully.');
+        } else {
+          console.error('Failed to delete the item.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+      
+    
+
+  }
   return (
     <div>
       <Search onSearch =  {handleSearching}/>
       <AddTransactionForm onNewTransaction  = {updateTransaction} />
-      <TransactionsList transactions = {filteredTransactions} />
+      <TransactionsList deleteTransaction={deleteTransaction} transactions = {filteredTransactions} />
     </div>
   );
 }

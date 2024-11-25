@@ -7,6 +7,7 @@ function Transaction(props) {
       <td>{props.description}</td>
       <td>{props.category}</td>
       <td>{props.amount}</td>
+      <td><button onClick={()=>props.deleteTransaction(props.id)}>Delete</button></td>
     </tr>
   );
 }
